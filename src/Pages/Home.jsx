@@ -1,14 +1,16 @@
-// import React from 'react'
-// import MoviesHome from './MoviesHome'
-// import TvShowHome from './TvShowHome'
+import React from 'react'
+import Header from '../components/Header'
+import JumbotronMovies from '../components/Home/JumbotronMovies'
+import ContainerMovies from '../components/Home/ContainerMovies'
 
-// const Home = () => {
-//   return (
-//     <div>
-//     <MoviesHome />
-//     <TvShowHome />
-//     </div>
-//   )
-// }
+function Home() {
+  return (
+    <div>
+        <Header />
+        <JumbotronMovies />
+        <ContainerMovies />
+    </div>
+  )
+}
 
-// export default Home
+export default Home;

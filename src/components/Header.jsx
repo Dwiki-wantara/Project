@@ -13,7 +13,7 @@ function NavScroll() {
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav className="" style={{ width: "75%" }}navbarScroll >
-            <Nav.Link href="#action1" className="text-light fs-5 fw-light ms-5" >Home</Nav.Link>
+            <Nav.Link as =  {Link} to='/' className="text-light fs-5 fw-light ms-5" >Home</Nav.Link>
             <Nav.Link as =  {Link} to='/tvshow' className="text-light fs-5 fw-light ms-3" >TV Shows</Nav.Link>
             <Nav.Link as =  {Link} to='/movies' className="text-light fs-5 fw-light ms-3" >Movies</Nav.Link>
           </Nav>
