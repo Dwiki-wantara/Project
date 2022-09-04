@@ -1,0 +1,7 @@
+.Square{
+  transition: width 2s, height 4s;
+}
+ 
+.Square:hover {
+ padding: 6px;
+}

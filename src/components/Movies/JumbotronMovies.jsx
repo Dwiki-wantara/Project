@@ -18,8 +18,9 @@ function JumbotronMovies() {
           <Card.Text className="ms-5 text-light text-center" >2019 </Card.Text>
           <Card.Text className="ms-3 text-center"> <button className="text-light border-light" style={{backgroundColor: "black", borderRadius: "8px"}}> Movies </button> </Card.Text>
           </div>
-          <Card.Text className="ms-5 mt-2"> <button className="text-light fw-bold" style={{ textColor:"white" , backgroundColor: "Red", borderRadius: "8px", padding: "10px 50px"}}> WATCH NOW !</button> </Card.Text>
-        </Card.ImgOverlay>
+        <a><Card.Text className="ms-5 mt-2"> <button className="text-light fw-bold" style={{ textColor:"white" , backgroundColor: "Red", borderRadius: "8px", padding: "10px 50px"}}> WATCH NOW !</button> </Card.Text>
+        </a>
+          </Card.ImgOverlay>
       </Card>
     </div>
     )

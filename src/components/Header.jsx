@@ -1,12 +1,38 @@
-import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container';
+
 import Form from 'react-bootstrap/Form';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
 import LogoDF from '../assets/images/logo.png'
-import {Link} from 'react-router-dom'
+import { useState } from "react";
+import React from "react";
+import { Navbar, Container, Nav, Button, Dropdown } from "react-bootstrap";
+import { Link, useNavigate } from "react-router-dom";
+import AuthModal from "./AuthModal";
+// import dumbflixLogo from "../assets/images/dumbflix_logo.png";
+import { useEffect } from "react";
+import masgan from "../assets/images/masgan.png";
+import { FaUserAlt, FaMoneyBillAlt, FaSignOutAlt } from "react-icons/fa";
+
 
 function NavScroll() {
+  const [show, setShow] = useState(false);
+  const handleShow = () => setShow(true);
+  const handleClose = () => setShow(false);
+
+  const [isLogin, setIsLogin] = useState(false);
+
+  const user = JSON.parse(localStorage.getItem("user"));
+
+  const navigate = useNavigate();
+
+  const handleLogout = () => { localStorage.removeItem("user");
+    navigate("/");
+  };
+
+  useEffect(() => {
+    if (user) setIsLogin(true);
+    else setIsLogin(false);
+  }, [user, handleLogout]);
+
+
   return (
     <Navbar className= "fixed-top" bg="dark" expand="lg" >
       <Container fluid>
@@ -17,12 +43,47 @@ function NavScroll() {
             <Nav.Link as =  {Link} to='/tvshow' className="text-light fs-5 fw-light ms-3" >TV Shows</Nav.Link>
             <Nav.Link as =  {Link} to='/movies' className="text-light fs-5 fw-light ms-3" >Movies</Nav.Link>
           </Nav>
-        <Navbar.Brand href="#" className="d-flex justify-content-center" style= {{ width: "100%" }} ><img src={LogoDF} alt="" /></Navbar.Brand>
+        <Navbar.Brand href="/"  style= {{ width: "100%",padding:"0px 0px 0px 180px" }} ><img src={LogoDF} alt="" /></Navbar.Brand>
           
-          <Form className="d-flex">
-            <Button variant="light" className="text-danger fw-bold me-3 px-5" >Register</Button>
-            <Button variant="dark" className="bg-danger me-5 fw-bold px-5" >Login</Button>
-          </Form>
+          
+          <Nav>
+            {isLogin ? (
+              <Dropdown style={{paddingRight:"115px"}}>
+                <Dropdown.Toggle id="user-dropdown" variant="white">
+                  <img src={masgan} alt="Masgan" width={30} className="rounded-pill" />
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu variant="dark" style={{alignItem:"left", marginTop:"7px"}}>
+                  <Dropdown.Item href="/profile">
+                    <FaUserAlt className="text-danger me-2" />{" "}
+                    <span>Profile</span>
+                  </Dropdown.Item>
+
+                  <Dropdown.Item href="/payment">
+                    <FaMoneyBillAlt className="text-danger me-2" />{" "}
+                    <span>Pay</span>
+                  </Dropdown.Item>
+
+                  <Dropdown.Divider className="bg-secondary" />
+
+                  <Dropdown.Item href="#" onClick={handleLogout}>
+                    <FaSignOutAlt className="text-danger me-2" />
+                    <span>Logout</span>
+                  </Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+              
+            ) : (
+              <Form className="d-flex">
+              {/* <Button variant="light" className="text-danger fw-bold me-3 px-5" onClick={handleShow}>Register</Button> */}
+              <Button variant="danger" className="bg-danger me-5 fw-bold px-5" onClick={handleShow}>Login</Button>
+              </Form>
+
+             
+            )}
+            <AuthModal show={show} handleClose={handleClose} />
+          </Nav>
+
         </Navbar.Collapse>
       </Container>
     </Navbar>

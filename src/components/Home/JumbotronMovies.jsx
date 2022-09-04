@@ -2,6 +2,7 @@ import Card from 'react-bootstrap/Card';
 import TvPicture from '../../assets/images/home.png'
 import Witcher from '../../assets/images/home-witcher.png'
 import Home from '../../assets/images/home.png'
+import Square from "../../components/Timbul.module.css"
 
 function JumbotronMovies() {
     return(
@@ -17,10 +18,11 @@ function JumbotronMovies() {
           </Card.Text>
           <div className="d-flex align-center">
           <Card.Text className="ms-5 text-light text-center" >2019 </Card.Text>
-          <Card.Text className="ms-3 text-center"> <button  style={{backgroundColor: "transparent", borderRadius: "8px",color:"White",border:"white"}}> Tv Wacth </button> </Card.Text>
+          <Card.Text className="ms-3 text-center"> <button className="text-light" style={{borderRadius: "8px", backgroundColor: "transparent",borderColor:"white", padding:"2px 10px"}}> TV Series </button> </Card.Text>
           </div>
-          <Card.Text className="ms-5 mt-2"> <button className="text-light fw-bold" style={{ textColor:"white" , backgroundColor: "Red", borderRadius: "8px", padding: "10px 50px", border:"none"}}> WATCH NOW !</button> </Card.Text>
-        </Card.ImgOverlay>
+          <a><Card.Text className="ms-5 mt-2 "> <button className="text-light fw-bold" style={{ textColor:"white" , backgroundColor: "Red", borderRadius: "8px", padding: "10px 50px", border:"none"}} > WATCH NOW !</button> </Card.Text>
+        </a>
+          </Card.ImgOverlay>
       </Card>
     </div>
 
