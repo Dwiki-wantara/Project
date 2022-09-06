@@ -1,4 +1,3 @@
-
 import Form from 'react-bootstrap/Form';
 import LogoDF from '../assets/images/logo.png'
 import { useState } from "react";
@@ -9,6 +8,7 @@ import AuthModal from "./AuthModal";
 // import dumbflixLogo from "../assets/images/dumbflix_logo.png";
 import { useEffect } from "react";
 import masgan from "../assets/images/masgan.png";
+import AdminAnduser from "../components/adminAnduser"
 import { FaUserAlt, FaMoneyBillAlt, FaSignOutAlt } from "react-icons/fa";
 
 
@@ -17,7 +17,9 @@ function NavScroll() {
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
 
-  const [isLogin, setIsLogin] = useState(false);
+  const [isRegister, setisRegister] = useState(false);
+  
+  // const [isLogin, setIsLogin] = useState(false);
 
   const user = JSON.parse(localStorage.getItem("user"));
 
@@ -28,9 +30,10 @@ function NavScroll() {
   };
 
   useEffect(() => {
-    if (user) setIsLogin(true);
-    else setIsLogin(false);
+    if (user) setisRegister(true);
+    else setisRegister(false);
   }, [user, handleLogout]);
+
 
 
   return (
@@ -47,7 +50,7 @@ function NavScroll() {
           
           
           <Nav>
-            {isLogin ? (
+            {isRegister ? (
               <Dropdown style={{paddingRight:"115px"}}>
                 <Dropdown.Toggle id="user-dropdown" variant="white">
                   <img src={masgan} alt="Masgan" width={30} className="rounded-pill" />
@@ -78,8 +81,6 @@ function NavScroll() {
               {/* <Button variant="light" className="text-danger fw-bold me-3 px-5" onClick={handleShow}>Register</Button> */}
               <Button variant="danger" className="bg-danger me-5 fw-bold px-5" onClick={handleShow}>Login</Button>
               </Form>
-
-             
             )}
             <AuthModal show={show} handleClose={handleClose} />
           </Nav>

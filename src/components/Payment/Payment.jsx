@@ -1,6 +1,6 @@
 import React from "react";
 import { Form, Button } from "react-bootstrap";
-import {RiAttachmentFill} from 'react-icons/ri'
+import {IconTransfer} from 'react-icons/ri'
 
 function PaymentHome() {
   return (
@@ -24,8 +24,8 @@ function PaymentHome() {
           </Form.Group>
 
           <Form.Group className="mb-5" controlId="formBasicPassword">
-            <Form.Label className="labelInputFile rounded">Attache proof of transfer <span><RiAttachmentFill style={{fontSize: "30px"}}/></span></Form.Label>
-            <Form.Control type="file" placeholder="Password" />
+            <Form.Label className="labelInputFile rounded">Attache proof of transfer</Form.Label>
+            <Form.Control type="file"></Form.Control>
           </Form.Group>
 
           <Button variant="primary" type="submit" className="border-0 btnSubmitPayment py-2 fw-bold">

@@ -1,11 +1,16 @@
 import React, { useState } from "react";
-// import { useEffect } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import "../components/Auth.modules.css";
+import dataJson from "../components/adminAnduser.json"
 import { useNavigate } from "react-router-dom";
 
-const initialUserState = {
+// const dataLogin = JSON.parse(localStorage.getItem("dataLogin"));
+// const email = dataLogin.email;
+// const password = dataLogin.password;
+
+
+const UserDataObject = {
   fullName: "",
   email: "",
   gender: "",
@@ -19,20 +24,20 @@ const initialUserState = {
 const AuthModal = ({ show, handleClose }) => {
   const [isRegister, setIsRegister] = useState(false);
 
-  const [showPw, setShowPw] = useState(false);
+  const [iconPassword, seticonPassword] = useState(false);
 
   const switchMode = () => {
-    setUserData(initialUserState);
-    setShowPw(false);
+    setUserData(UserDataObject);
+    seticonPassword(false);
     setIsRegister(!isRegister);
   };
 
-  const [userData, setUserData] = useState(initialUserState);
+  const [userData, setUserData] = useState(UserDataObject);
 
   const handleChange = (event) => {
-    setUserData((prevState) => ({
-      ...prevState,
-      [event.target.name]: event.target.value,
+    setUserData((change) => ({
+      ...change,
+      [event.target.name]: event.target.value
     }));
   };
 
@@ -62,18 +67,18 @@ const AuthModal = ({ show, handleClose }) => {
            {/* Full Name */}
            {isRegister && (
             <Form.Group className="mb-3" controlId="fullName">
-              <Form.Control type="text" name="fullName" placeholder="Full Name" className="bg-group" onChange={handleChange} />
+              <Form.Control type="text" name="fullName" placeholder="Full Name" className="bg-gradient-secondary" onChange={handleChange} />
             </Form.Group>
           )}
           {/* Email */}
           <Form.Group className="mb-3" controlId="email">
-            <Form.Control type="email" name="email" className="bg-group" placeholder="Email" onChange={handleChange} />
+            <Form.Control type="email" name="email"  placeholder="Email" onChange={handleChange} />
           </Form.Group>
 
           {/* Gender */}
           {isRegister && (
-            <Form.Select className="mb-3 bg-group" onChange={handleChange} name="gender" >
-              <option disabled selected>Gender</option>
+            <Form.Select className="mb-3" onChange={handleChange} name="gender" >
+              <option disabled selected hidden>Gender</option>
               <option value="Male">Male</option>
               <option value="Female">Female</option>
             </Form.Select>
@@ -82,26 +87,26 @@ const AuthModal = ({ show, handleClose }) => {
           {/* Phone*/}
           {isRegister && (
             <Form.Group className="mb-3" controlId="phone">
-              <Form.Control name="phone" type="number" placeholder="Phone" className="bg-group" onChange={handleChange} />
+              <Form.Control name="phone" type="text" placeholder="Phone" onChange={handleChange} />
             </Form.Group>
           )}
 
           {/* Address */}
           {isRegister && (
             <Form.Group className="mb-3" controlId="address">
-              <Form.Control as="textarea" name="address" placeholder="Address" className="bg-group" onChange={handleChange} />
+              <Form.Control as="textarea" name="address" placeholder="Address"  onChange={handleChange} />
             </Form.Group>
           )}
 
             {/* Password */}
             <div className="mb-3 pw__container">
             <Form.Group controlId="password">
-              <Form.Control type={showPw ? "text" : "password"} placeholder="Password" className="bg-group" onChange={handleChange} />
+              <Form.Control type={iconPassword ? "text" : "password"} placeholder="Password" onChange={handleChange} />
             </Form.Group>
 
             <div
-              className="pw__icon-container" onClick={() => setShowPw(!showPw)} >
-              {showPw ? (<FaEyeSlash className="pw__icon" /> ) : (<FaEye className="pw__icon" /> )}
+              className="pw__icon-container" onClick={() => seticonPassword(!iconPassword)} >
+              {iconPassword ? (<FaEyeSlash className="pw__icon" /> ) : (<FaEye className="pw__icon" /> )}
             </div>
           </div>
 
